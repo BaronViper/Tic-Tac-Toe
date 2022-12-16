@@ -13,6 +13,35 @@ class TictactoeLogic:
 
         return empty_spaces
 
+    def play_turn(self, grid_data, player_symbol):
+        player_choice = input(
+            f"({player_symbol}), Enter a number according to the "
+            f"desired grid space.\n")
+        numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
+        if player_choice not in numbers:
+            print("Invalid option. Please select a number from 1-9")
+        else:
+            player_choice = int(player_choice)
+            print(player_choice)
+            if player_choice == 1 or player_choice == 2 or player_choice == 3:
+                minus_index = 1
+                row_no = 0
+            elif player_choice == 4 or player_choice == 5 or player_choice == 6:
+                minus_index = 4
+                row_no = 1
+            elif player_choice == 7 or player_choice == 8 or player_choice == 9:
+                minus_index = 7
+                row_no = 2
+
+            if grid_data[row_no][player_choice - minus_index] != ' ':
+                print(
+                    "Invalid option. Space is already occupied. Please select another number from "
+                    "1-9")
+            else:
+                grid_data[row_no][player_choice - minus_index] = f'{player_symbol}'
+                valid_choice = True
+        return valid_choice
+
     def calculate_winner(self, grid_data):
         winner = ()
         # calculate horizontal
