@@ -22,7 +22,6 @@ class TictactoeLogic:
             print("Invalid option. Please select a number from 1-9")
         else:
             player_choice = int(player_choice)
-            print(player_choice)
             if player_choice == 1 or player_choice == 2 or player_choice == 3:
                 minus_index = 1
                 row_no = 0

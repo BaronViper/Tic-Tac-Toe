@@ -1,3 +1,4 @@
+import game_ai
 import game_logic
 import assets
 import os
@@ -19,6 +20,7 @@ class TicTacToe:
         print(grid)
 
     def single_player_start(self, player_symbol):
+        ai = game_ai.TicTacToeBot()
         logic = game_logic.TictactoeLogic()
         print(f"Here is the board layout. Keep note of the numbers and enter them according to your "
               f"desired grid space!\n{assets.grid}")
@@ -53,7 +55,12 @@ class TicTacToe:
                 elif empty_spaces != 0:
                     valid_choice = False
                     while not valid_choice:
-                        valid_choice = logic.play_turn(grid_data=grid_data, player_symbol=player_symbol)
+                        if player_symbol == 'X':
+                            valid_choice = logic.play_turn(grid_data=grid_data, player_symbol=player_symbol)
+                            ai.ai_play(grid=grid_data, ai_symbol=ai_symbol, player_symbol=player_symbol)
+                        elif player_symbol == 'O':
+                            valid_choice = logic.play_turn(grid_data=grid_data, player_symbol=player_symbol)
+                            ai.ai_play(grid=grid_data, ai_symbol=ai_symbol, player_symbol=player_symbol)
                         self.print_table(grid_data=grid_data)
 
             if no_spaces:
